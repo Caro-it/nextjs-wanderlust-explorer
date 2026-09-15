@@ -1,36 +1,113 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Wanderlust Explorer
 
-## Getting Started
+Aplicación multipágina construida con **React** y **Next.js** (App Router) para
+explorar, buscar y filtrar experiencias de viaje únicas alrededor del mundo —
+desde tours gastronómicos hasta rutas de vela — **sin recargar la página**.
 
-First, run the development server:
+Proyecto desarrollado como parte del bootcamp de **4Geeks Academy**.
+
+---
+
+## ✨ Funcionalidades
+
+- **Explorador** de 100 experiencias mostradas en una cuadrícula de tarjetas.
+- **Búsqueda por título** en tiempo real (coincidencia case-insensitive).
+- **Filtros** por categoría (Adventure, Culture, Food, Wellness, Nature) y por destino,
+  combinables con la búsqueda.
+- **Estado en la URL:** la búsqueda y los filtros activos se reflejan como query
+  parameters, así que los enlaces se pueden compartir y aterrizan ya filtrados
+  (ej. `/experiences?search=vela&category=Adventure&destination=Croatia`).
+- **Detalle** de cada experiencia en su propia ruta.
+- **Favoritos:** marca experiencias con un corazón y consúltalas en su página.
+- **Navegación del lado del cliente** entre 5 páginas, sin recargas completas.
+- **Diseño responsive** (móvil + escritorio).
+
+---
+
+## 🧭 Páginas
+
+| Ruta                 | Descripción                                             |
+| -------------------- | ------------------------------------------------------- |
+| `/`                  | Home con sección hero y acceso al explorador            |
+| `/experiences`       | Explorador con búsqueda y filtros                       |
+| `/experiences/[id]`  | Detalle completo de una experiencia                     |
+| `/favorites`         | Experiencias marcadas como favoritas                    |
+| `/profile`           | Perfil de usuario simulado + contador de favoritos      |
+
+---
+
+## 🛠️ Stack
+
+- [Next.js](https://nextjs.org/) — App Router
+- [React](https://react.dev/) — hooks nativos (`useState`, `useEffect`) + custom hooks
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+
+Sin librerías externas de gestión de estado: todo el estado vive en React nativo.
+
+---
+
+## 🎨 Design References
+
+Antes de construir la UI revisé estas interfaces reales de descubrimiento
+(tarjetas + búsqueda + filtros) como inspiración de diseño. La estética
+principal está inspirada en **GetYourGuide** por su enfoque limpio y visual
+para presentar experiencias de viaje.
+
+1. **GetYourGuide** — https://www.getyourguide.com
+   Referencia estética principal. Tomé de aquí: la tarjeta de experiencia
+   (imagen grande, título, destino y rating), los filtros por categoría y el
+   layout de descubrimiento limpio y aireado.
+
+2. **Airbnb** — https://www.airbnb.com
+   Tomé de aquí: la cuadrícula de tarjetas, el icono de favorito (corazón) en
+   la esquina de la tarjeta y los filtros que actualizan resultados sin recargar.
+
+3. **Concepto "Travel App" (Dribbble)** — https://dribbble.com/search/travel-app
+   Inspiración visual: paleta de colores, tipografía y espaciado.
+
+---
+
+## 🚀 Ejecutar en local
+
+Clona el repositorio e instala las dependencias:
+
+```bash
+git clone https://github.com/Caro-it/nextjs-wanderlust-explorer.git
+cd nextjs-wanderlust-explorer
+npm install
+```
+
+Levanta el servidor de desarrollo:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📁 Estructura
 
-## Learn More
+```
+src/
+├── app/
+│   ├── layout.tsx              # Layout raíz con Navbar
+│   ├── page.tsx                # Home (/)
+│   ├── experiences/
+│   │   ├── page.tsx            # Explorador (/experiences)
+│   │   └── [id]/page.tsx       # Detalle (/experiences/[id])
+│   ├── favorites/page.tsx      # Favoritos (/favorites)
+│   └── profile/page.tsx        # Perfil (/profile)
+├── components/                 # Navbar, ExperienceCard, SearchBar, FilterBar
+├── hooks/                      # Custom hooks (lógica de filtrado y favoritos)
+├── data/experiences.ts         # Dataset local de 100 experiencias
+└── types/experience.ts         # Interface Experience
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 👤 Autora
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Carolina Kaechele — [github.com/Caro-it](https://github.com/Caro-it)
