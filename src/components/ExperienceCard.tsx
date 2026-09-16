@@ -1,16 +1,34 @@
+"use client";
+
 import type { Experience } from "@/types/experience";
 import Link from "next/link";
+import { useFavorites } from "@/context/FavoritesContext";
 
 interface ExperienceCardProps {
   experience: Experience;
 }
 
 export default function ExperienceCard({ experience }: ExperienceCardProps) {
+  const { isFavorite, toggleFavorite } = useFavorites();
+  const favorite = isFavorite(experience.id);
+
   return (
     <Link
       href={`/experiences/${experience.id}`}
-      className="block border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow"
+      className="block border border-gray-200 rounded-xl overflow-hidden hover:shadow-lg transition-shadow relative"
     >
+      <button
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          toggleFavorite(experience.id);
+        }}
+        className="absolute top-2 right-2 bg-white rounded-full w-9 h-9 flex items-center justify-center shadow"
+        aria-label={favorite ? "Quitar de favoritos" : "Añadir a favoritos"}
+      >
+        {favorite ? "❤️" : "🤍"}
+      </button>
+
       <img
         src={experience.imageUrl}
         alt={experience.title}
