@@ -105,7 +105,18 @@ src/
 ├── data/experiences.ts         # Dataset local de 100 experiencias
 └── types/experience.ts         # Interface Experience
 ```
+## Nota de arquitectura — Estado de favoritos
 
+La spec pedía guardar los favoritos en un `useState` de nivel superior y
+pasarlos como props. En el App Router de Next.js cada ruta es un árbol de
+componentes independiente, por lo que no es posible compartir ese estado
+entre páginas (`/experiences`, `/favorites`, `/profile`) solo con props.
+
+La solución usa **React Context** (`FavoritesContext`), que es parte nativa
+de React — no una librería externa de gestión de estado como Redux o Zustand,
+que la spec prohíbe. El `useState` vive en el `FavoritesProvider` (nivel
+superior, en el layout) y se consume mediante un custom hook `useFavorites()`.
+Así se cumple el objetivo del requisito: un único estado compartido en React nativo.
 ---
 
 ## 👤 Autora
