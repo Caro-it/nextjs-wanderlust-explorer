@@ -18,7 +18,7 @@ export default function SearchBar({ value, onChange }: SearchBarProps) {
       // Cuando escribes, avisamos hacia arriba con el nuevo texto.
       // e.target.value = lo que hay escrito en el input en ese momento.
 
-      placeholder="Buscar experiencias por título..."
+      placeholder="Prueba: yoga, food, sailing, temple..."
       className="w-full border border-gray-300 rounded-lg px-4 py-2 mb-6"
     />
   );
